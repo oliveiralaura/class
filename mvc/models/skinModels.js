@@ -1,19 +1,4 @@
-// const skin={
-//     name:"",
-//     description:"",
-//     rare:"",
-//     seeInfo:function(){
-//         return`nome: ${this.name} Descrição: ${this.description} rare: ${this.rare}`
-//     },
-//     toJSON:function(){
-//         return{
-//             "name":this.name,
-//             "description":this.description,
-//             "rare":this.rare
-//         }
-//     }
-// }
-// module.exports=skin
+const Db = require('../../repositorio/database.js')
 
 class Skin {
 
@@ -26,11 +11,31 @@ class Skin {
     foto1Skin
     foto2Skin
 
-    constructor(){
+    constructor(nomeSkin, descSkin, raridadeSkin){
+        this.nomeSkin = nomeSkin
+        this.descSkin = descSkin
+        this.raridadeSkin = raridadeSkin
     }
 
+    getAllSkins(){
+        const db = new Db()
+
+        db.getConnection().query('select * from skins', (err, results, fields) => {
+            console.log(results)
+        })
+    }
+
+    // pegarDadosJson(){
+       
+    //     return{
+    //         "nome": this.nomeSkin,
+    //         'descricao': this.descSkin,
+    //         'raridade': this.raridadeSkin
+    //     }
+
+    // }
 }
 
-const skins = new Skin()
 
 module.exports = Skin;
+
